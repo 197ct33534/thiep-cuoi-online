@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#fff9e6">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Thiệp cưới Minh Tuấn & Ngọc Căn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ephesis&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&family=Style+Script&family=Protest+Strike&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+        :root {
+            --font-heading: "Playfair Display", serif;
+            --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        @font-face {
+            font-family: 'ThSignatura';
+            src: url('/fonts/ThSignatura.woff2') format('woff2'),
+                url('/fonts/ThSignatura.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        .family-title {
+            font-family: 'Protest Strike', system-ui;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-sans);
+        }
+
+        .signature {
+            font-family: 'Ephesis', 'ThSignatura', var(--font-heading);
+            font-weight: 400;
+            line-height: 1;
+            display: inline-block;
+            color: #8b0000;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        #invitation h2 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            letter-spacing: 0.01em;
+        }
+
+        .datetime-text {
+            font-family: 'Style Script', cursive;
+            font-weight: 400;
+            line-height: 1.2;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .date-spacing {
+            letter-spacing: 8px;
+        }
+
+        @keyframes slideUpFade {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slideUpFade {
+            animation: slideUpFade 1s ease-out forwards;
+        }
+
+        @keyframes slideInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            animation: slideInFromLeft 0.8s ease-out forwards;
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            animation: slideInFromRight 0.8s ease-out forwards;
+        }
+
+        /* Add delay classes for staggered animation */
+        .delay-100 {
+            animation-delay: 100ms;
+        }
+
+        .delay-200 {
+            animation-delay: 200ms;
+        }
+
+        .slide-in-left-trigger {
+            opacity: 0;
+        }
+
+        .slide-in-right-trigger {
+            opacity: 0;
+        }
+
+        @keyframes scaleUp {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeRotateIn {
+            0% {
+                opacity: 0;
+                transform: rotate(-10deg) scale(0.95);
+            }
+
+            100% {
+                opacity: 1;
+                transform: rotate(0) scale(1);
+            }
+        }
+
+        .scale-up-trigger {
+            opacity: 0;
+        }
+
+        .scale-up {
+            animation: scaleUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .fade-rotate-trigger {
+            opacity: 0;
+        }
+
+        .fade-rotate {
+            animation: fadeRotateIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up-trigger {
+            opacity: 0;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Timeline dots animation */
+        @keyframes scaleDot {
+            0% {
+                transform: scale(0);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .scale-dot {
+            animation: scaleDot 0.5s ease-out forwards;
+        }
+
+        .three-photo {
+            display: flex;
+            gap: 8px;
+            /* giống gap-2 của Tailwind */
+            margin-bottom: 1rem;
+            align-items: flex-end;
+            /* để middle "ních" lên trông đẹp hơn */
+        }
+
+        /* mỗi ảnh chiếm 1/3 của vùng còn lại (trừ 2 gap = 16px) */
+        .three-photo .photo-item {
+            flex: 0 0 calc((100% - 16px) / 3);
+            width: calc((100% - 16px) / 3);
+            height: 170px;
+            object-fit: cover;
+            /* border-radius: 8px; */
+            transition: transform .45s cubic-bezier(.2, .8, .2, 1), box-shadow .35s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
+            background-color: #f6f2ee;
+        }
+
+        /* ảnh giữa nhích lên (lên khoảng 12%) và nổi bật hơn */
+        .three-photo .photo-middle {
+            transform: translateY(-12%);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, .12);
+            z-index: 2;
+        }
+
+        /* hiệu ứng hover */
+        .three-photo .photo-item:hover {
+            transform: translateY(-6%) scale(1.03);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .14);
+        }
+
+        .three-photo .photo-middle:hover {
+            transform: translateY(-14%) scale(1.04);
+        }
+
+        .three-photo .photo-middle {
+            /* mặc định như khi hover: hơi nâng lên + phóng to nhẹ và bóng lớn hơn */
+            transform: translateY(-28%) scale(1.03);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .14);
+            z-index: 2;
+        }
+
+        /* hiệu ứng hover cho các ảnh khác */
+        .three-photo .photo-item:hover {
+            transform: translateY(-6%) scale(1.03);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .14);
+        }
+
+        /* hover cho ảnh giữa: tăng mức nhích và scale hơn nữa */
+        .three-photo .photo-middle:hover {
+            transform: translateY(-18%) scale(1.06);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, .18);
+        }
+
+        /* responsive: trên màn nhỏ giảm chiều cao và giảm độ nhích */
+        @media (max-width: 420px) {
+            .three-photo {
+                gap: 6px;
+            }
+
+            .three-photo .photo-item {
+                height: 78px;
+                flex-basis: calc((100% - 12px) / 3);
+                width: calc((100% - 12px) / 3);
+            }
+
+            .three-photo .photo-middle {
+                transform: translateY(-8%);
+            }
+        }
+
+        @keyframes headerRise {
+            0% {
+                opacity: 0;
+                transform: translateY(12px) scale(.99);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes namePop {
+            0% {
+                opacity: 0;
+                transform: scale(0.6) translateY(10px);
+            }
+
+            60% {
+                transform: scale(1.06) translateY(-6px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(18px) scale(.98);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .header-fade {
+            opacity: 0;
+            animation: headerRise 560ms cubic-bezier(.2, .9, .2, 1) forwards;
+        }
+
+        .name-pop {
+            opacity: 0;
+            animation: namePop 820ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .song-float {
+            opacity: 0;
+            animation: floatUp 700ms ease-out forwards;
+        }
+
+        /* small extra delay utilities */
+        .delay-300 {
+            animation-delay: 300ms;
+        }
+
+        .delay-400 {
+            animation-delay: 400ms;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .calendar-header {
+            grid-column: span 7;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            color: #374151;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .calendar-day.active {
+            background-color: #fef2f2;
+            color: #b91c1c;
+            font-weight: 600;
+        }
+
+        .calendar-day.active::before {
+            content: '💖';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            font-size: 12px;
+            animation: heartbeat 1s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .calendar-day.disabled {
+            color: #9ca3af;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-auto-rows: 180px;
+            gap: 12px;
+            padding: 20px;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            transform-origin: center;
+            transition: all 0.3s ease-out;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(.2, .8, .2, 1);
+        }
+
+        /* Hover Effects */
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Grid Layout Variations */
+        .gallery-item.wide {
+            grid-column: span 2;
+        }
+
+        .gallery-item.tall {
+            grid-row: span 2;
+        }
+
+        .gallery-item.big {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        /* Responsive adjustments */
+        /* @media (max-width: 768px) { */
+        .photo-gallery {
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: 140px;
+            gap: 8px;
+            padding: 12px;
+        }
+
+        /* } */
+
+        @media (max-width: 768px) {
+
+            /* Adjust main container */
+            main {
+                padding: 0.5rem;
+            }
+
+            /* Make images fit better on mobile */
+            .photo-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 120px;
+                gap: 6px;
+                padding: 10px;
+            }
+
+            /* Adjust font sizes for mobile */
+            .signature {
+                font-size: 2rem;
+                /* Smaller signature font */
+            }
+
+            .datetime-text {
+                font-size: 1.5rem;
+            }
+
+            /* Calendar adjustments */
+            .calendar {
+                max-width: 280px;
+            }
+
+            .calendar-day {
+                font-size: 0.75rem;
+            }
+
+            /* Form adjustments */
+            input,
+            select,
+            textarea {
+                font-size: 16px;
+                /* Prevent zoom on iOS */
+                padding: 0.75rem;
+            }
+
+            /* Three photo layout */
+            .three-photo .photo-item {
+                height: 100px;
+            }
+
+            .three-photo .photo-middle {
+                transform: translateY(-15%) scale(1.03);
+            }
+
+            /* Location card */
+            .p-6 {
+                padding: 1rem;
+            }
+
+            /* Adjust spacing */
+            .mt-6 {
+                margin-top: 1rem;
+            }
+
+            .mb-6 {
+                margin-bottom: 1rem;
+            }
+
+            /* Header adjustments */
+            #invitation {
+                padding: 1rem;
+            }
+
+            /* Music button position */
+            .fixed.bottom-6 {
+                bottom: 1rem;
+            }
+        }
+
+        /* Additional adjustments for very small screens */
+        @media (max-width: 360px) {
+            .signature {
+                font-size: 1.75rem;
+            }
+
+            .three-photo .photo-item {
+                height: 80px;
+            }
+
+            .calendar {
+                max-width: 240px;
+            }
+        }
+
+        /* Album và footer animations */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer-text {
+            position: relative;
+            display: inline-block;
+            font-style: italic;
+            color: #7b0f0f;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 400ms;
+        }
+
+        .footer-text::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #b91c1c, transparent);
+            transform: scaleX(0);
+            transition: transform 0.6s ease;
+        }
+
+        .footer-text.show::after {
+            transform: scaleX(1);
+        }
+
+        .photo-gallery {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .photo-gallery.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition-delay: calc(var(--delay) * 100ms);
+        }
+
+        .photo-gallery.show .gallery-item {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body class="bg-[#fff9e6] overflow-x-hidden flex items-center justify-center min-h-screen">
+
+    <main class="relative w-full max-w-md mx-auto p-4">
+        <!-- Background Pattern -->
+        <div
+            class="absolute inset-0 bg-[url('/images/pattern-bg.png')] bg-cover bg-center opacity-20 pointer-events-none">
+        </div>
+
+        <!-- Thiệp mời -->
+        <section id="invitation"
+            class="relative bg-white rounded-2xl shadow-xl overflow-hidden  text-center py-8 px-4 animate-slideUpFade">
+
+            <!-- Tiêu đề -->
+            <p class="text-md uppercase tracking-widest text-gray-500 mb-1 header-fade">Thiệp Mời</p>
+            <h2 class="text-3xl mb-2">
+                <span class="signature text-4xl name-pop">Minh Tuấn</span>
+                <span class="mx-2 align-middle text-xl text-[#8b0000] header-fade delay-100">&amp;</span>
+                <span class="signature text-4xl  name-pop delay-100">Ngọc Căn</span>
+            </h2>
+
+            <!-- Song Hỷ -->
+            <div class="flex justify-center">
+                <img src="/images/song-hy.png" alt="Song Hỷ" class="w-28 h-28 opacity-90 song-float delay-200">
+            </div>
+
+            <!-- Ngày giờ -->
+            <p class="datetime-text text-2xl text-gray-700 header-fade delay-300">Chủ Nhật - 11h00</p>
+            <p class="datetime-text text-3xl text-[#b91c1c] mb-4 date-spacing header-fade delay-400">09.11.2025</p>
+
+            <!-- Ảnh cưới -->
+            <!-- border-4 border-[#b91c1c]  -->
+            <div
+                class="relative rounded-md overflow-hidden mx-auto w-[85%] border-2 border-[#b91c1c] header-fade delay-400">
+                <img id="photo" src="/images/TON6780.jpg" alt="Ảnh cưới Minh Tuấn & Ngọc Căn"
+                    class="w-full h-auto opacity-0 scale-105 transition-all duration-1000 ease-out">
+            </div>
+
+            <!-- Tên khách mời -->
+            <div class="mt-6">
+                <p class="text-gray-600 italic text-md">Trân trọng kính mời</p>
+                <p class="text-3xl text-[#7b0f0f] mt-1 signature">Nghĩa Min</p>
+            </div>
+
+            <!-- <h2 class="text-3xl font-[cursive] text-[#7b0f0f] mb-4">Lễ Cưới</h2> -->
+            <div class="flex justify-center mt-6">
+                <img src="/images/song-hy-2.png" alt="Song Hỷ" class="w-28 h-28 opacity-90">
+            </div>
+            <!-- Gia đình Nhà Trai -->
+            <div class="flex justify-center mb-6 gap-2">
+                <div class="w-full max-w-md  text-center  bg-white rounded-xl p-6 pr-0 slide-in-left-trigger">
+                    <h3 class="text-md uppercase family-title  text-[#8b0000] mb-3">Nhà Trai</h3>
+                    <p class="text-sm uppercase family-title text-gray-700 mb-1">Ông Nguyễn Anh Minh</p>
+                    <p class="text-sm uppercase family-title text-gray-700 mb-1">Bà Nguyễn Thị Hải</p>
+                    <p class="text-sm  italic text-gray-500">Quận 8, Hồ Chí Minh</p>
+                </div>
+                <div class="w-full max-w-md text-center bg-white rounded-xl p-6 pr-0 slide-in-right-trigger">
+                    <h3 class="text-md uppercase family-title text-[#8b0000] mb-3">Nhà Gái</h3>
+                    <p class="text-sm  uppercase family-title text-gray-700 mb-1">Ông Trần Văn Nguyên</p>
+                    <p class="text-sm  uppercase family-title text-gray-700 mb-1">Bà Nguyễn Văn Anh</p>
+                    <p class="text-sm   italic text-gray-500">Quận 8, Hồ Chí Minh</p>
+                </div>
+            </div>
+
+            <div class="flex justify-center mb-6 flex-col gap-2">
+                <h3 class="text-[12px] uppercase text-gray-400 mb-2">Trân Trọng Thông báo tin lễ thành hôn
+                    của</h3>
+                <div class="flex flex-col gap-2">
+                    <span class="text-4xl signature text-gray-600 scale-up-trigger">Ngụy Minh Tuấn</span>
+                    <span class="text-4xl signature text-gray-600 scale-up-trigger delay-100">
+                        &
+                    </span>
+                    <span class="text-4xl signature text-gray-600 scale-up-trigger delay-200">Nguyễn Ngọc Căn</span>
+                </div>
+            </div>
+            <div class="flex justify-center mt-6">
+                <img src="https://bellabridal.vn/public/upload/files/343342550_5955920044504242_5222768225392896037_n.jpg"
+                    alt="Song Hỷ" class="border-4 border-[#b91c1c] fade-rotate-trigger">
+            </div>
+            <div class="px-5 py-3 text-center">
+                <div class="flex items-center justify-center my-3  fade-in-up-trigger">
+                    <div class="flex-grow border-t border-gray-300"></div>
+                    <span class="mx-3 text-pink-500 text-xl animate-bounce">💖</span>
+                    <div class="flex-grow border-t border-gray-300"></div>
+                </div>
+            </div>
+            <!-- <div class="border-t border-gray-300 my-3"></div> -->
+            <p class="text-gray-600 text-md italic mb-20 fade-in-up-trigger">Trân Trọng Kính Mời</p>
+
+            <!-- Ảnh cặp đôi -->
+            <div class="three-photo   mb-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyRdl1ivsbxrXfXzvzHHF10fH2mtTIS_kDqZH_l2UJ7oSG3EnprhTXlS3G2Xm2ZUvWh4o&usqp=CAU"
+                    alt="" class=" photo-item ">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwo9roNdrAYZzr8FbAcb8z8kKW4VlEI0c9-mbIpL1dF509MTMIMQb6mWXCCaEJwE2jlzs&usqp=CAU"
+                    alt="" class=" photo-item photo-middle ">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjgZhdX0EpCK1zhvJ6A3UYT9caeDUrSODphqFvmA8iiQhjHmSjRuJ2rNZL3g4JJggqtxI&usqp=CAU"
+                    alt="" class=" photo-item ">
+            </div>
+            <div class="px-5 py-6 text-center">
+                <p class="text-sm text-gray-700 mb-2 fade-in-up-trigger">THAM DỰ TIỆC MỪNG LỄ THÀNH HÔN</p>
+                <p class="text-sm text-gray-700 fade-in-up-trigger">Vào lúc</p>
+
+                <!-- Thông tin thời gian -->
+                <div class="my-3 flex justify-center items-center space-x-4 text-gray-800 font-medium">
+                    <div class="text-center scale-up-trigger">
+                        <p class="text-sm">11 giờ 00</p>
+                    </div>
+                    <div class="text-center  scale-up-trigger delay-100">
+                        <p class="text-2xl font-bold">09</p>
+                        <p class="text-sm">Tháng 11</p>
+                    </div>
+                    <div class="text-center scale-up-trigger delay-200">
+                        <p class="text-sm">Năm 2025</p>
+                    </div>
+                </div>
+
+                <p class="text-xs text-gray-500 italic fade-in-up-trigger">(Tức ngày Nhâm Ngọ tháng Bính Tuất năm Ất Tỵ
+                    )</p>
+
+                <!-- <div class="border-t border-gray-300 my-4"></div> -->
+                <div class="flex items-center justify-center my-5 fade-in-up-trigger">
+                    <div class="flex-grow border-t border-gray-300"></div>
+                    <span class="mx-3 text-pink-500 text-xl animate-bounce">💖</span>
+                    <div class="flex-grow border-t border-gray-300"></div>
+                </div>
+                <p class="font-semibold text-gray-800 fade-in-up-trigger">BUỔI TIỆC ĐƯỢC TỔ CHỨC TẠI</p>
+                <!-- <p class="text-sm text-gray-600 mt-1 fade-in-up-trigger">Đại Hỷ PALACE Wedding & Convention</p> -->
+
+                <div
+                    class="p-6 border-4 border-[#b91c1c] rounded-lg mt-4 bg-white/50 backdrop-blur-sm fade-in-up-trigger">
+                    <h3 class="text-xl font-semibold text-[#b91c1c] mb-2">Đại Hỷ PALACE</h3>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                        156 Đ. Lý Chiêu Hoàng, Phường Bình Phú,<br />
+                        Quận 6, Thành phố Hồ Chí Minh
+                    </p>
+                    <a href="https://maps.app.goo.gl/a4Cx8fJAujD9cQqK7" target="_blank"
+                        class="inline-flex items-center gap-2 px-6 py-3 bg-[#b91c1c] text-white rounded-lg hover:bg-[#a11818] transition-all duration-300 transform hover:scale-105 active:scale-95">
+                        <span>📍</span>
+                        <span class="font-medium">Xem chỉ đường</span>
+                    </a>
+                </div>
+
+                <div class="px-5 py-6 pb-4 text-center fade-in-up-trigger ">
+                    <h4 class="text-2xl datetime-text  uppercase tracking-wide  text-[#b91c1c] mb-4">Tháng 11 - 2025
+                    </h4>
+                    <div class="calendar-header">
+                        <div>CN</div>
+                        <div>T2</div>
+                        <div>T3</div>
+                        <div>T4</div>
+                        <div>T5</div>
+                        <div>T6</div>
+                        <div>T7</div>
+                    </div>
+                    <div class="calendar ">
+                        <!-- Các ngày disabled của tháng trước -->
+                        <div class="calendar-day disabled"></div>
+                        <div class="calendar-day disabled"></div>
+                        <div class="calendar-day disabled"></div>
+                        <div class="calendar-day disabled"></div>
+                        <div class="calendar-day disabled"></div>
+                        <div class="calendar-day disabled">1</div>
+                        <!-- Các ngày trong tháng -->
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day active">9</div>
+                        <div class="calendar-day ">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day">15</div>
+                        <div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day">22</div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-center mb-6 flex-col gap-2">
+                <div class="flex flex-col gap-2">
+                    <span class="text-2xl signature text-[#b91c1c] scale-up-trigger capiziotn">Xác Nhận Tham Dự</span>
+                    <span class="text-2xl signature text-[#b91c1c] scale-up-trigger capiziotn delay-100">
+                        &
+                    </span>
+                    <span class="text-2xl signature text-[#b91c1c] scale-up-trigger capiziotn delay-200">Gửi Lời
+                        Chúc</span>
+                </div>
+
+                <div class="mt-2 px-6 fade-in-up-trigger">
+                    <form id="rsvp-form" class="max-w-sm mx-auto space-y-4">
+                        <!-- Tên -->
+                        <div class="group">
+                            <input type="text" required
+                                class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#b91c1c] outline-none transition-colors bg-white/50 backdrop-blur-sm"
+                                placeholder="Họ và tên">
+                        </div>
+
+                        <!-- Số điện thoại -->
+                        <div class="group">
+                            <input type="tel" required
+                                class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#b91c1c] outline-none transition-colors bg-white/50 backdrop-blur-sm"
+                                placeholder="Số điện thoại">
+                        </div>
+
+                        <!-- Số người tham dự -->
+                        <div class="group">
+                            <select required
+                                class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#b91c1c] outline-none transition-colors bg-white/50 backdrop-blur-sm appearance-none">
+                                <option value="" disabled selected>Số người tham dự</option>
+                                <option value="1">1 người</option>
+                                <option value="2">2 người</option>
+                                <!-- <option value="3">3 người</option>
+                                <option value="4">4 người</option>
+                                <option value="5">5 người trở lên</option> -->
+                            </select>
+                        </div>
+
+                        <!-- Lời chúc -->
+                        <div class="group">
+                            <textarea required rows="3"
+                                class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#b91c1c] outline-none transition-colors bg-white/50 backdrop-blur-sm resize-none"
+                                placeholder="Gửi lời chúc đến cô dâu chú rể"></textarea>
+                        </div>
+
+                        <!-- Nút gửi -->
+                        <button type="submit"
+                            class="w-full py-3 px-6 rounded-lg bg-[#b91c1c] text-white font-medium hover:bg-[#a11818] transform hover:scale-105 active:scale-95 transition-all duration-200">
+                            Gửi xác nhận tham dự
+                        </button>
+                    </form>
+                </div>
+                <div class="my-8 fade-in-up-trigger">
+                    <h3 class="text-2xl signature text-[#b91c1c] text-center mb-6">Album Hình Cưới</h3>
+
+                    <div class="photo-gallery">
+                        <!-- Big feature image -->
+                        <div class="gallery-item big" style="--delay: 1">
+                            <img src="data:image/jpeg;base64,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"
+                                alt="Ảnh cưới 1" loading="lazy">
+                        </div>
+
+                        <!-- Regular items -->
+                        <div class="gallery-item" style="--delay: 2">
+                            <img src="https://palatinostudio.com/wp-content/uploads/2021/06/concept-chup-anh-cuoi-15.jpg"
+                                alt="Ảnh cưới 2" loading="lazy">
+                        </div>
+
+                        <!-- Wide item -->
+                        <div class="gallery-item wide" style="--delay: 3">
+                            <img src="https://aphoto.vn/wp-content/uploads/2018/11/typography-anh-cuoi.jpg"
+                                alt="Ảnh cưới 3" loading="lazy">
+                        </div>
+
+                        <!-- Tall item -->
+                        <div class="gallery-item tall" style="--delay: 4">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwCnXsKfC9uaBn1M74GQIeg5V7vfngAmkKnA&s"
+                                alt="Ảnh cưới 4" loading="lazy">
+                        </div>
+
+                        <!-- More items -->
+                        <div class="gallery-item" style="--delay: 5">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgBiu-e-SK8GBBxhEhYa1XLBqDTlM91kAqe4Y5bL0VU_xoJSfbswLSloKC9NM8JbKhdCY&usqp=CAU"
+                                alt="Ảnh cưới 5" loading="lazy">
+                        </div>
+
+                        <div class="gallery-item wide" style="--delay: 6">
+                            <img src="https://webthanhhoa.net/wp-content/uploads/2022/05/studio-anh-cuoi-chat-luong-tai-Thanh-Hoa-2.jpg"
+                                alt="Ảnh cưới 6" loading="lazy">
+                        </div>
+
+                        <div class="gallery-item" style="--delay: 7">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAJRsx5Zxkwi9VUzCwFPCm47Ji391gEvtbiyRl8qxXKw9Bgb-1d2AgQw5kbMktcPnaA7I&usqp=CAU"
+                                alt="Ảnh cưới 7" loading="lazy">
+                        </div>
+
+                        <div class="gallery-item" style="--delay: 8">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXyMAaZuu6jABbx0WV5b1IQxid1qO6OQvZ1hsADqZei-h1qCNEZIpb87w11HPk3RzwQHE&usqp=CAU"
+                                alt="Ảnh cưới 8" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+            <p class="mt-6 text-sm footer-text">
+                Hân hạnh được đón tiếp!
+            </p>
+        </section>
+        <!-- <section id="details" class="relative bg-[#fff9e6] py-8 px-4 text-center animate-slideUpFade">
+
+            <p class="mt-6 text-sm text-gray-500 italic">Chúng tôi rất hân hạnh được đón tiếp các bạn!</p>
+        </section> -->
+
+        <!-- Nút điều khiển -->
+        <div class="fixed bottom-6 w-full max-w-md mx-auto px-6 flex justify-between">
+            <button id="music-btn"
+                class="w-12 h-12 flex items-center justify-center text-2xl bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all"
+                aria-label="Bật/tắt nhạc nền">🔊</button>
+            <button id="back-to-top"
+                class="fixed bottom-24 right-6 w-12 h-12 flex items-center justify-center text-2xl bg-black/30 backdrop-blur-sm rounded-full hover:bg-black/50 transition-all opacity-0 translate-y-8 duration-300 ease-in-out"
+                aria-label="Về đầu trang">
+                ⬆️
+            </button>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const photo = document.getElementById('photo');
+            const musicBtn = document.getElementById('music-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const music = new Audio('/music/to_tinh.mp3');
+            let isPlaying = false;
+            music.loop = true;
+
+            // Ảnh fade-in + zoom nhẹ
+            setTimeout(() => {
+                photo.classList.remove('opacity-0', 'scale-105');
+                photo.classList.add('opacity-100', 'scale-100');
+            }, 400);
+
+            // Thử autoplay khi load trang
+            (async function tryAutoplay() {
+                try {
+                    await music.play();
+                    isPlaying = true;
+                    musicBtn.textContent = '🔊';
+                } catch (err) {
+                    // Nếu bị chặn, hiển thị overlay kêu người dùng chạm
+                    showTapToPlay();
+                    console.warn('Autoplay blocked:', err);
+                }
+            })();
+
+            function showTapToPlay() {
+                if (document.getElementById('tap-to-play')) return;
+                const overlay = document.createElement('div');
+                overlay.id = 'tap-to-play';
+                overlay.className = 'fixed inset-0 flex items-end md:items-center justify-center p-6 pointer-events-auto';
+                overlay.innerHTML = `
+                    <button id="tap-play-btn" aria-label="Bật nhạc" class="bg-white/90 text-[#7b0f0f] px-6 py-3 rounded-2xl shadow-lg text-lg">
+                        Chạm để bật nhạc
+                    </button>
+                `;
+                document.body.appendChild(overlay);
+
+                const btn = document.getElementById('tap-play-btn');
+                const tryPlay = async () => {
+                    try {
+                        await music.play();
+                        isPlaying = true;
+                        musicBtn.textContent = '🔊';
+                        overlay.remove();
+                    } catch (e) {
+                        console.warn('Playback failed after user gesture:', e);
+                    }
+                };
+                btn.addEventListener('click', tryPlay, { once: true });
+                document.addEventListener('pointerdown', tryPlay, { once: true });
+            }
+
+            // Nút nhạc
+            musicBtn.addEventListener('click', async () => {
+                if (isPlaying) {
+                    music.pause();
+                    musicBtn.textContent = '🔇';
+                    isPlaying = false;
+                } else {
+                    try {
+                        await music.play();
+                        musicBtn.textContent = '🔊';
+                        isPlaying = true;
+                        const overlay = document.getElementById('tap-to-play');
+                        if (overlay) overlay.remove();
+                    } catch (err) {
+                        console.warn('Phát nhạc thất bại:', err);
+                    }
+                }
+            });
+
+            // Khi rời tab, dừng nhạc
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden && isPlaying) {
+                    music.pause();
+                    musicBtn.textContent = '🔇';
+                    isPlaying = false;
+                }
+            });
+
+            // Next button
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    const nextSection = document.getElementById('details');
+                    if (nextSection) nextSection.scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('slide-in-left-trigger')) {
+                            entry.target.classList.add('slide-in-left');
+                        }
+                        if (entry.target.classList.contains('slide-in-right-trigger')) {
+                            entry.target.classList.add('slide-in-right');
+                        }
+                        if (entry.target.classList.contains('scale-up-trigger')) {
+                            entry.target.classList.add('scale-up');
+                        }
+                        if (entry.target.classList.contains('fade-rotate-trigger')) {
+                            entry.target.classList.add('fade-rotate');
+                        }
+                        if (entry.target.classList.contains('fade-in-up-trigger')) {
+                            entry.target.classList.add('fade-in-up');
+                        }
+                        if (entry.target.classList.contains('photo-gallery')) {
+                            entry.target.classList.add('show');
+                        }
+                        if (entry.target.classList.contains('footer-text')) {
+                            entry.target.classList.add('show');
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.2 // Kích hoạt khi phần tử hiện 20% trong viewport
+            });
+
+            // Theo dõi các phần tử cần animation
+            document.querySelectorAll('.slide-in-left-trigger, .slide-in-right-trigger, .scale-up-trigger, .fade-rotate-trigger, .fade-in-up-trigger, .photo-gallery, .footer-text').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
