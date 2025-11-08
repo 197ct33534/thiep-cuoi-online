@@ -45,12 +45,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Ephesis&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&family=Style+Script&family=Protest+Strike&display=swap"
         rel="stylesheet">
-
-
     <style>
         :root {
             --font-heading: "Playfair Display", serif;
             --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            --curtain-accent: #ffd166;
+            /* vàng ấm */
         }
 
         @font-face {
@@ -671,7 +671,12 @@
             transform: scale(1);
         }
 
-        /* Thêm vào phần style */
+        /* Thêm vào phần style - curtain (đã format, đối xứng cho bên phải) */
+        :root {
+            --curtain-accent: #ffd166;
+            /* vàng ấm */
+        }
+
         @keyframes curtainRight {
             0% {
                 transform: translateX(0);
@@ -694,10 +699,7 @@
 
         .curtain-wrapper {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             display: flex;
             pointer-events: none;
             z-index: 9999;
@@ -707,93 +709,100 @@
         .curtain-right {
             width: 50%;
             height: 100%;
-            background: #b91c1c;
             position: relative;
+            background: linear-gradient(180deg, #b91c1c 0%, #8a0f0f 100%);
+            overflow: hidden;
         }
 
+
+
+        /* mở rèm chậm, mượt */
         .curtain-left {
-            animation: curtainLeft 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+            animation: curtainLeft 2.4s cubic-bezier(.22, .9, .36, 1) forwards;
         }
 
         .curtain-right {
-            animation: curtainRight 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+            animation: curtainRight 2.4s cubic-bezier(.22, .9, .36, 1) forwards;
         }
 
-        /* Thêm họa tiết cho rèm (tùy chọn) */
         .curtain-left::before,
         .curtain-right::before {
             content: '';
             position: absolute;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 8%) 0 0/40px 40px,
-                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 6%) 20px 20px/40px 40px;
+            inset: 0;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            opacity: 0.95;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            animation: curtainPatternTwinkle 5s linear infinite;
         }
 
-        /* CSS */
-        .gallery-item {
+        .curtain-left::before {
+            background-image: url("./images/dev-new.png");
+        }
+
+        .curtain-right::before {
+            background-image: url("./images/dev-new.png");
+            transform: scaleX(-1);
+            /* đảo đối xứng hoạ tiết để cân đối */
+        }
+
+        /* thêm các chấm / trái tim nhẹ nhàng trên nền (pseudo after) */
+        .curtain-left::after,
+        .curtain-right::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            opacity: 0.7;
+            background-image:
+                radial-gradient(circle at 8% 18%, rgba(255, 209, 102, 1) 0 6px, transparent 7px),
+                radial-gradient(circle at 22% 50%, rgba(255, 209, 102, 0.95) 0 5px, transparent 6px),
+                radial-gradient(circle at 68% 28%, rgba(255, 241, 199, 0.9) 0 7px, transparent 8px),
+                radial-gradient(circle at 86% 72%, rgba(255, 209, 102, 0.95) 0 4px, transparent 5px);
+            animation: curtainFloat 6s ease infinite;
+        }
+
+        /* pattern SVG nhúng (single-line) + pseudo cho họa tiết, right là mirror của left */
+
+        @keyframes curtainPatternTwinkle {
+            0% {
+                opacity: 0.9;
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateY(-3px) scale(1.002);
+            }
+
+            100% {
+                opacity: 0.9;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes curtainFloat {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* remove curtains cleanly after animation (JS will handle removal) */
+        .curtain-hidden {
             opacity: 0;
-            transform: translateY(12px) scale(.98);
-            transition: .6s cubic-bezier(.2, .8, .2, 1);
-            transition-delay: calc(var(--delay) * 80ms);
-        }
-
-        .gallery.show .gallery-item {
-            opacity: 1;
-            transform: none;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            .gallery-item,
-            .gallery.show .gallery-item {
-                transition: none;
-            }
-        }
-
-        .hero-img {
-            transform-origin: center;
-            animation: kenburns 12s ease-out forwards;
-        }
-
-        @keyframes kenburns {
-            from {
-                transform: scale(1) translateY(0);
-            }
-
-            to {
-                transform: scale(1.08) translateY(-4%);
-            }
-        }
-
-        svg path {
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: draw .9s ease forwards;
-        }
-
-        @keyframes draw {
-            to {
-                stroke-dashoffset: 0
-            }
-        }
-
-        .photo {
-            transition: transform .25s ease;
-            transform-style: preserve-3d;
-        }
-
-        .btn:active {
-            transform: scale(.98);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
-            }
+            transition: opacity .3s ease;
         }
 
         .modal-overlay {
@@ -868,9 +877,27 @@
 </head>
 
 <body class="bg-[#fff9e6] overflow-x-hidden flex items-center justify-center min-h-screen">
-    <div class="curtain-wrapper">
-        <div class="curtain-left"></div>
-        <div class="curtain-right"></div>
+    <!-- Curtain wrapper (left + right) - symmetric markup -->
+    <div class="curtain-wrapper" aria-hidden="true">
+        <div class="curtain-left" role="presentation">
+            <div style="position: absolute;
+    right: -100px;
+    top: calc(50% - 100px);
+    background: #b91c1c;">
+                <img src="/images/dev1.jpg" class="w-[200px] h[200px] object-fit" style="border: 10px solid #f6c831;"
+                    alt="" srcset="">
+            </div>
+        </div>
+        <div class="curtain-right" role="presentation">
+            <div style="position: absolute;
+    left: -100px;
+    top: calc(50% - 100px);
+        background: #b91c1c;">
+                <img src="/images/dev1.jpg" class="w-[200px] h[200px] object-fit" style="border: 10px solid #f6c831;"
+                    alt="" srcset="">
+            </div>
+        </div>
+
     </div>
     <div class="modal-overlay" id="thankYouModal">
         <div class="thank-you-modal">
@@ -1212,6 +1239,7 @@
             let isPlaying = false;
             music.loop = true;
             setTimeout(() => {
+
                 const curtain = document.querySelector('.curtain-wrapper');
                 if (curtain) {
                     curtain.style.opacity = '0';
@@ -1223,7 +1251,28 @@
                 photo.classList.remove('opacity-0', 'scale-105');
                 photo.classList.add('opacity-100', 'scale-100');
             }, 400);
+            let unlockAudio = false; // Cờ đánh dấu đã được "mở khóa" âm thanh chưa
 
+            // Hàm mở khóa âm thanh (gọi khi có tương tác người dùng)
+            async function unlockAndPlayMusic() {
+                if (unlockAudio) return; // Đã mở khóa rồi thì thôi
+
+                try {
+                    await music.play();
+                    isPlaying = true;
+                    musicBtn.textContent = '🔊';
+                    unlockAudio = true;
+
+                    // Xóa overlay nếu có
+                    const overlay = document.getElementById('tap-to-play');
+                    if (overlay) overlay.remove();
+
+                    console.log('Nhạc đã được bật thành công sau tương tác!');
+                } catch (err) {
+                    console.warn('Vẫn bị chặn ngay cả sau tương tác:', err);
+                    showTapToPlay(); // Hiếm khi xảy ra
+                }
+            }
             // Thử autoplay khi load trang
             (async function tryAutoplay() {
                 try {
@@ -1238,32 +1287,32 @@
             })();
 
             function showTapToPlay() {
-                if (document.getElementById('tap-to-play')) return;
+                if (document.getElementById('tap-to-play') || unlockAudio) return;
+
                 const overlay = document.createElement('div');
                 overlay.id = 'tap-to-play';
-                overlay.className = 'fixed inset-0 flex items-end md:items-center justify-center p-6 pointer-events-auto';
+                overlay.className = 'fixed inset-0 flex items-end md:items-center justify-center p-6 pointer-events-auto z-50 bg-black/30 backdrop-blur-sm';
                 overlay.innerHTML = `
-                    <button id="tap-play-btn" aria-label="Bật nhạc" class="bg-white/90 text-[#7b0f0f] px-6 py-3 rounded-2xl shadow-lg text-lg">
-                        Chạm để bật nhạc
-                    </button>
-                `;
+        <div class="text-center animate-bounce">
+            <button id="tap-play-btn" class="bg-white/95 text-[#b91c1c] px-8 py-4 rounded-xl shadow-2xl text-xl font-bold hover:scale-105 transition-transform">
+                🎵 Chạm để bật nhạc nền 🎵
+            </button>
+            <p class="text-white mt-4 text-sm opacity-80">Nhạc cưới đang chờ bạn...</p>
+        </div>
+    `;
                 document.body.appendChild(overlay);
 
                 const btn = document.getElementById('tap-play-btn');
-                const tryPlay = async () => {
-                    try {
-                        await music.play();
-                        isPlaying = true;
-                        musicBtn.textContent = '🔊';
-                        overlay.remove();
-                    } catch (e) {
-                        console.warn('Playback failed after user gesture:', e);
-                    }
-                };
-                btn.addEventListener('click', tryPlay, { once: true });
-                document.addEventListener('pointerdown', tryPlay, { once: true });
-            }
+                btn.focus(); // Tăng khả năng tương tác
 
+                const tryPlay = () => {
+                    unlockAndPlayMusic();
+                    overlay.remove();
+                };
+
+                btn.addEventListener('click', tryPlay, { once: true });
+                overlay.addEventListener('click', tryPlay, { once: true });
+            }
             // Nút nhạc
             musicBtn.addEventListener('click', async () => {
                 if (isPlaying) {
