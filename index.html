@@ -755,6 +755,23 @@
             animation: curtainLeft 5.4s cubic-bezier(.22, .9, .36, 1) forwards 2s;
         }
 
+        .curtain-left.mobile {
+            width: 100%;
+            /* background-color: #b91c1c; */
+        }
+
+        .curtain-left.mobile .curtain-left-content {
+            top: unset;
+            right: unset;
+            left: calc(50% - 50px);
+            bottom: 0;
+        }
+
+        .curtain-left.mobile .curtain-left-content img {
+            width: 100px;
+            height: 100px;
+        }
+
         .curtain-right {
             animation: curtainRight 5.4s cubic-bezier(.22, .9, .36, 1) forwards 2s;
         }
@@ -775,10 +792,17 @@
 
         .curtain-left::before {
             background-image: url("./images/233244.png");
+            background-size: cover;
+        }
+
+        .curtain-left.mobile::before {
+            background-image: url("./images/dev.jpg");
+
         }
 
         .curtain-right::before {
             background-image: url("./images/233244.png");
+            background-size: cover;
             transform: scaleX(-1);
             /* đảo đối xứng hoạ tiết để cân đối */
         }
@@ -803,7 +827,7 @@
         /* pattern SVG nhúng (single-line) + pseudo cho họa tiết, right là mirror của left */
 
         @keyframes curtainPatternTwinkle {
-            0% {
+            /* 0% {
                 opacity: 0.9;
                 transform: translateY(0) scale(1);
             }
@@ -816,7 +840,7 @@
             100% {
                 opacity: 0.9;
                 transform: translateY(0) scale(1);
-            }
+            } */
         }
 
         @keyframes curtainFloat {
@@ -953,25 +977,19 @@
 
     <!-- Curtain wrapper (left + right) - symmetric markup -->
     <div class="curtain-wrapper" aria-hidden="true">
-        <div class="curtain-left" role="presentation">
+        <div class="curtain-left md:block hidden" role="presentation">
             <div class="curtain-left-content" ;>
                 <img src="/images/dev1.jpg" class="w-[200px] h[200px] object-fit" style="border: 10px solid #f6c831;"
                     alt="" srcset="">
             </div>
         </div>
-        <div class="curtain-right" role="presentation">
-            <!-- <div style="position: absolute;
-    left: -100px;
-    top: calc(50% - 100px);
-        background: #b91c1c;">
-                <img src="/images/dev1.jpg" class="w-[200px] h[200px] object-fit" style="border: 10px solid #f6c831;"
+        <div class="curtain-right  md:block hidden" role="presentation"> </div>
+        <div class="curtain-left mobile md:hidden block" role="presentation">
+            <!-- <div class="curtain-left-content" ;>
+                <img src="/images/dev1.jpg" class="w-[100px] h[100px] object-fit" style="border: 4px solid #fed88f;"
                     alt="" srcset="">
             </div> -->
         </div>
-        <!-- <div class="curtain-center">
-            <img src="/images/dev1.jpg" class="w-[200px] h[200px] object-fit" style="border: 10px solid #f6c831;" alt=""
-                srcset="">
-        </div> -->
     </div>
     <div class="modal-overlay" id="thankYouModal">
         <div class="thank-you-modal">
