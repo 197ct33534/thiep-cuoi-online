@@ -1,174 +1,54 @@
-<!doctype html>
-<html lang="vi">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Thư Mời Cưới — Anh Tú & Diệu Nhi</title>
-
-    <!-- Tailwind CDN for quick styling (replace with your build for production) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Optional: nice serif font -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <style>
-        html,
-        body {
+        .shine-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* thanh sáng quét */
+        .shine-btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 120%;
             height: 100%;
+            background: linear-gradient(120deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.45) 50%,
+                    transparent 100%);
+            transform: skewX(-20deg);
+            animation: shine-sweep 2.4s ease-in-out infinite;
         }
 
-        body {
-            margin: 0;
-            font-family: "Playfair Display", serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+        /* animation chạy ngang */
+        @keyframes shine-sweep {
+            0% {
+                left: -140%;
+            }
 
-        /* Small helper for improved focus outlines */
-        .focus-ring:focus {
-            outline: 3px solid rgba(219, 39, 119, 0.25);
-            outline-offset: 3px;
+            50% {
+                left: 40%;
+            }
+
+            100% {
+                left: 140%;
+            }
         }
     </style>
 </head>
 
-<body class="bg-[#fff8f8]">
+<body>
+    <button id="tap-play-btn" class="btn-invite shine-btn">
+        Mở Thiệp Cưới
+    </button>
 
-    <!-- Invitation Cover Section -->
-    <section id="invitation-cover" class="relative h-screen flex flex-col items-center justify-center overflow-hidden">
-        <!-- Header -->
-        <header class="text-center mb-6">
-            <h2 class="text-gray-500 italic text-sm">Thư Mời Cưới</h2>
-            <h1 class="text-3xl font-semibold text-pink-700 mt-1">Anh Tú &amp; Diệu Nhi</h1>
-            <p class="text-gray-600 mt-1 tracking-widest text-sm">10.12.2025</p>
-        </header>
-
-        <!-- Envelope + Photo -->
-        <div class="relative w-72 h-96 flex justify-center items-end">
-            <!-- Wedding Photo (hidden until opened) -->
-            <img id="wedding-photo" src="/images/TON6780.jpg" alt="Ảnh cưới của Anh Tú và Diệu Nhi"
-                class="absolute bottom-16 w-full opacity-0 transform translate-y-10 transition-all duration-700 ease-in-out rounded-lg shadow-lg"
-                decoding="async" />
-
-            <!-- Envelope -->
-            <div class="relative w-full flex justify-center">
-                <img src="/images/Copilot_20251105_231551.png" alt="Phong bì mời"
-                    class="w-full select-none pointer-events-none" decoding="async">
-                <div id="open-button" role="button" aria-label="Mở phong bì" tabindex="0"
-                    class="absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer transition-transform active:scale-95 focus-ring"
-                    title="Nhấn để mở">
-                    <img src="/images/wax-seal.png" alt="Dấu sáp" class="w-12">
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer Buttons -->
-        <div class="absolute bottom-6 flex justify-between w-full px-8">
-            <button id="toggle-music" aria-pressed="false"
-                class="text-gray-500 text-2xl hover:text-pink-500 transition focus-ring"
-                title="Bật / tắt nhạc">🔊</button>
-            <button id="next-section" class="text-pink-600 text-2xl hover:translate-x-1 transition focus-ring"
-                title="Xem phần tiếp theo">➡️</button>
-        </div>
-    </section>
-
-    <!-- Placeholder for next section -->
-    <section id="details" class="min-h-screen flex items-center justify-center p-8">
-        <div class="max-w-2xl text-center">
-            <h2 class="text-2xl font-semibold text-pink-700 mb-2">Lễ Thành Hôn</h2>
-            <p class="text-gray-700">Thông tin chi tiết sẽ có ở đây. (Bạn có thể thay đổi nội dung này theo yêu cầu.)
-            </p>
-        </div>
-    </section>
-
-    <!-- Accessible audio element -->
-    <audio id="bg-music" src="/music/wedding-song.mp3" loop preload="auto"></audio>
-
-    <!-- JavaScript -->
-    <script>
-        const openBtn = document.getElementById('open-button');
-        const photo = document.getElementById('wedding-photo');
-        const musicBtn = document.getElementById('toggle-music');
-        const nextBtn = document.getElementById('next-section');
-        const bgMusic = document.getElementById('bg-music');
-
-        let opened = false;
-        let musicPlaying = false;
-
-        // Helper to reveal photo (runs once) 
-        function openEnvelope() {
-            if (opened) return;
-
-            // Thêm hiệu ứng mở thiệp
-            openBtn.style.transform = 'translate(-50%, 0) rotate(10deg)';
-            openBtn.style.transition = 'transform 0.5s ease-out';
-
-            // Hiệu ứng hiện ảnh
-            setTimeout(() => {
-                photo.classList.remove('opacity-0', 'translate-y-10');
-                photo.classList.add('opacity-100', 'translate-y-0');
-                openBtn.classList.add('pointer-events-none', 'opacity-70');
-                opened = true;
-                openBtn.setAttribute('aria-disabled', 'true');
-            }, 500);
-        }
-
-        // Tự động mở thiệp sau 3 giây
-        setTimeout(openEnvelope, 3000);
-
-        // Click / keyboard support for the open button vẫn giữ nguyên
-        openBtn.addEventListener('click', openEnvelope);
-        openBtn.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openEnvelope();
-            }
-        });
-
-        // Toggle background music; must be started by user gesture to satisfy autoplay policies
-        musicBtn.addEventListener('click', async () => {
-            try {
-                if (musicPlaying) {
-                    bgMusic.pause();
-                    musicBtn.textContent = '🔇';
-                    musicBtn.setAttribute('aria-pressed', 'false');
-                } else {
-                    await bgMusic.play();
-                    musicBtn.textContent = '🔊';
-                    musicBtn.setAttribute('aria-pressed', 'true');
-                }
-                musicPlaying = !musicPlaying;
-            } catch (err) {
-                // If playback fails (browser restriction), show mute icon
-                musicBtn.textContent = '🔇';
-                musicBtn.setAttribute('aria-pressed', 'false');
-                musicPlaying = false;
-                console.warn('Playback failed:', err);
-            }
-        });
-
-        // Next section scroll
-        nextBtn.addEventListener('click', () => {
-            document.getElementById('details').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        // Pause music when document hidden to be polite
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden && !bgMusic.paused) {
-                bgMusic.pause();
-                musicBtn.textContent = '🔇';
-                musicBtn.setAttribute('aria-pressed', 'false');
-                musicPlaying = false;
-            }
-        });
-
-        // Optional: preload wedding photo for smoother reveal
-        (function preloadImage(src) {
-            const img = new Image();
-            img.src = src;
-        })('/images/wedding-photo.jpg');
-    </script>
 </body>
 
 </html>
