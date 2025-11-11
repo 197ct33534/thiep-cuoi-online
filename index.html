@@ -1402,20 +1402,20 @@
             })();
 
             function showTapToPlay() {
-                if (document.getElementById('tap-to-play') || unlockAudio) return;
+                // if (document.getElementById('tap-to-play') || unlockAudio) return;
 
-                const overlay = document.createElement('div');
-                overlay.style.zIndex = '10000';
-                overlay.id = 'tap-to-play';
-                overlay.className = 'fixed inset-0 flex items-end md:items-center justify-center p-6 pointer-events-auto z-50 bg-black/30 backdrop-blur-sm';
-                overlay.innerHTML = `
-                    <div class="text-center animate-bounce">
-                        <button id="tap-play-btn" class="bg-white/95 text-[#b91c1c] px-8 py-4 rounded-xl shadow-2xl text-xl font-bold hover:scale-105 transition-transform">
-                            🎵 Chạm để bật nhạc nền 🎵
-                        </button>
-                        <p class="text-white mt-4 text-sm opacity-80">Nhạc cưới đang chờ bạn...</p>
-                    </div>
-                `;
+                // const overlay = document.createElement('div');
+                // overlay.style.zIndex = '10000';
+                // overlay.id = 'tap-to-play';
+                // overlay.className = 'fixed inset-0 flex items-end md:items-center justify-center p-6 pointer-events-auto z-50 bg-black/30 backdrop-blur-sm';
+                // overlay.innerHTML = `
+                //     <div class="text-center animate-bounce">
+                //         <button id="tap-play-btn" class="bg-white/95 text-[#b91c1c] px-8 py-4 rounded-xl shadow-2xl text-xl font-bold hover:scale-105 transition-transform">
+                //             🎵 Chạm để bật nhạc nền 🎵
+                //         </button>
+                //         <p class="text-white mt-4 text-sm opacity-80">Nhạc cưới đang chờ bạn...</p>
+                //     </div>
+                // `;
                 document.body.appendChild(overlay);
 
                 const btn = document.getElementById('tap-play-btn');
