@@ -349,7 +349,7 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 2px;
-  max-width: 320px;
+  /* max-width: 320px; */
   margin: 0 auto;
 }
 
@@ -503,7 +503,7 @@ body {
 
   /* Calendar adjustments */
   .calendar {
-    max-width: 280px;
+    /* max-width: 280px; */
   }
 
   .calendar-day {
@@ -564,7 +564,7 @@ body {
   }
 
   .calendar {
-    max-width: 240px;
+    /* max-width: 240px; */
   }
 }
 
