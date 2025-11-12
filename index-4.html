@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thiệp Cưới - Vòng Hoa Mini</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Playfair+Display:wght@400&display=swap"
+        rel="stylesheet">
+    <style>
+        /* === BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #faf9f7;
+            color: #5d4e3e;
+            font-family: 'Playfair Display', serif;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .section {
+            padding: 3rem 1rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            margin-bottom: 0.5rem;
+            color: #8b6f47;
+        }
+
+        /* === WREATH DIVIDER === */
+        .wreath-divider {
+            position: relative;
+            height: 180px;
+            margin: 5rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: visible;
+        }
+
+        .wreath-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+        }
+
+        /* === VÒNG HOA SVG (có thể scale) === */
+        .wreath-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 8px rgba(139, 111, 71, 0.15));
+            animation: gentleRotate 20s linear infinite;
+        }
+
+        /* === CHỮ GIỮA VÒNG HOA === */
+        .wreath-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: #8b6f47;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+            z-index: 10;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        /* === HIỆU ỨNG LÁ RƠI NHẸ === */
+        .leaf {
+            position: absolute;
+            width: 12px;
+            height: 18px;
+            background: #a8c48a;
+            border-radius: 60% 40% 60% 40%;
+            opacity: 0.7;
+            animation: fall linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.7;
+            }
+
+            90% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(200px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes gentleRotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.05);
+            }
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 640px) {
+            .wreath-container {
+                width: 140px;
+                height: 140px;
+            }
+
+            .wreath-text {
+                font-size: 1.3rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Section 1 -->
+    <div class="section">
+        <h2>Anh & Em</h2>
+        <p>Chúng tôi sẽ cùng nhau viết tiếp câu chuyện tình yêu<br><strong>15.03.2026</strong> • Vườn Hoa Đà Lạt</p>
+    </div>
+
+    <!-- VÒNG HOA MINI -->
+    <div class="wreath-divider">
+        <div class="wreath-container">
+            <!-- SVG Vòng hoa -->
+            <svg class="wreath-svg" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+                <!-- Vòng tròn nền trong suốt -->
+                <circle cx="90" cy="90" r="80" fill="none" stroke="#e8e2d9" stroke-width="1" />
+
+                <!-- Lá olive & hoa baby breath (nhiều lớp) -->
+                <g transform="rotate(0 90 90)">
+                    <path d="M90 20 Q75 35 80 50 Q85 35 90 20" fill="#a8c48a" opacity="0.9" />
+                    <path d="M90 20 Q105 35 100 50 Q95 35 90 20" fill="#a8c48a" opacity="0.9" />
+                </g>
+                <g transform="rotate(45 90 90)">
+                    <path d="M90 20 Q75 35 80 50 Q85 35 90 20" fill="#b8d49a" />
+                    <path d="M90 20 Q105 35 100 50 Q95 35 90 20" fill="#b8d49a" />
+                </g>
+                <g transform="rotate(90 90 90)">
+                    <path d="M90 20 Q75 35 80 50 Q85 35 90 20" fill="#c8e0aa" />
+                    <path d="M90 20 Q105 35 100 50 Q95 35 90 20" fill="#c8e0aa" />
+                </g>
+                <g transform="rotate(135 90 90)">
+                    <path d="M90 20 Q75 35 80 50 Q85 35 90 20" fill="#98b87a" />
+                    <path d="M90 20 Q105 35 100 50 Q95 35 90 20" fill="#98b87a" />
+                </g>
+                <g transform="rotate(180 90 90)">
+                    <path d="M90 20 Q75 35 80 50 Q85 35 90 20" fill="#a8c48a" />
+                    <path d="M90 20 Q105 35 100 50 Q95 35 90 20" fill="#a8c48a" />
+                </g>
+                <g transform="rotate(225 90 90)">
+                    <path d="M90 20 Q75 35 80 50 Q85 35 90 20" fill="#b8d49a" />
+                    <path d="M90 20 Q105 35 100 50 Q95 35 90 20" fill="#b8d49a" />
+                </g>
+                <g transform="rotate(270 90 90)">
+                    <path d="M90 20 Q75 35 80 50 Q85 35 90 20" fill="#c8e0aa" />
+                    <path d="M90 20 Q105 35 100 50 Q95 35 90 20" fill="#c8e0aa" />
+                </g>
+                <g transform="rotate(315 90 90)">
+                    <path d="M90 20 Q75 35 80 50 Q85 35 90 20" fill="#98b87a" />
+                    <path d="M90 20 Q105 35 100 50 Q95 35 90 20" fill="#98b87a" />
+                </g>
+
+                <!-- Hoa baby breath nhỏ -->
+                <circle cx="70" cy="40" r="3" fill="#fff5e6" />
+                <circle cx="110" cy="40" r="3" fill="#fff5e6" />
+                <circle cx="55" cy="65" r="2.5" fill="#fff5e6" />
+                <circle cx="125" cy="65" r="2.5" fill="#fff5e6" />
+                <circle cx="70" cy="100" r="3" fill="#fff5e6" />
+                <circle cx="110" cy="100" r="3" fill="#fff5e6" />
+                <circle cx="85" cy="120" r="2" fill="#fff5e6" />
+                <circle cx="95" cy="120" r="2" fill="#fff5e6" />
+            </svg>
+
+            <!-- Chữ giữa vòng hoa -->
+            <div class="wreath-text">Forever</div>
+        </div>
+
+        <!-- Lá rơi nhẹ (tạo bằng JS) -->
+        <div id="leaves"></div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section">
+        <h2>Thời gian & Địa điểm</h2>
+        <p>16:00 • <strong>Vườn Thiền An</strong><br>Đà Lạt, Lâm Đồng</p>
+    </div>
+
+    <!-- JavaScript tạo lá rơi -->
+    <script>
+        const leavesContainer = document.getElementById('leaves');
+        const leafCount = 8;
+
+        for (let i = 0; i < leafCount; i++) {
+            const leaf = document.createElement('div');
+            leaf.className = 'leaf';
+
+            leaf.style.left = `${Math.random() * 100}%`;
+            const duration = 8 + Math.random() * 7;
+            leaf.style.animationDuration = `${duration}s`;
+            leaf.style.animationDelay = `${Math.random() * 5}s`;
+
+            // Xoay ngẫu nhiên
+            const rotate = Math.random() * 360;
+            leaf.style.transform = `rotate(${rotate}deg)`;
+
+            leavesContainer.appendChild(leaf);
+        }
+    </script>
+</body>
+
+</html>

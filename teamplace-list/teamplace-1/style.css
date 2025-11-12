@@ -1,0 +1,1223 @@
+:root {
+  --font-heading: "Playfair Display", serif;
+  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial;
+  --curtain-accent: #ffd166;
+  /* vàng ấm */
+}
+
+@font-face {
+  font-family: "ThSignatura";
+  src: url("/fonts/ThSignatura.woff2") format("woff2"),
+    url("/fonts/ThSignatura.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.family-title {
+  font-family: "Protest Strike", system-ui;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+.signature {
+  font-family: "Ephesis", "ThSignatura", var(--font-heading);
+  font-weight: 400;
+  line-height: 1;
+  display: inline-block;
+  color: #8b0000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#invitation h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.datetime-text {
+  font-family: "Style Script", cursive;
+  font-weight: 400;
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.date-spacing {
+  letter-spacing: 8px;
+}
+
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideUpFade {
+  animation: slideUpFade 1s ease-out forwards;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-left {
+  opacity: 0;
+  animation: slideInFromLeft 0.8s ease-out forwards;
+}
+
+.slide-in-right {
+  opacity: 0;
+  animation: slideInFromRight 0.8s ease-out forwards;
+}
+
+/* Add delay classes for staggered animation */
+.delay-100 {
+  animation-delay: 3100ms;
+}
+
+.delay-200 {
+  animation-delay: 3200ms;
+}
+
+.slide-in-left-trigger {
+  opacity: 0;
+}
+
+.slide-in-right-trigger {
+  opacity: 0;
+}
+
+@keyframes scaleUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeRotateIn {
+  0% {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.95);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+
+.scale-up-trigger {
+  opacity: 0;
+}
+
+.scale-up {
+  animation: scaleUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.fade-rotate-trigger {
+  opacity: 0;
+}
+
+.fade-rotate {
+  animation: fadeRotateIn 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up-trigger {
+  opacity: 0;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Timeline dots animation */
+@keyframes scaleDot {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.scale-dot {
+  animation: scaleDot 0.5s ease-out forwards;
+}
+
+.three-photo {
+  display: flex;
+  gap: 8px;
+  /* giống gap-2 của Tailwind */
+  margin-bottom: 1rem;
+  align-items: flex-end;
+  /* để middle "ních" lên trông đẹp hơn */
+}
+
+/* mỗi ảnh chiếm 1/3 của vùng còn lại (trừ 2 gap = 16px) */
+.three-photo .photo-item {
+  flex: 0 0 calc((100% - 16px) / 3);
+  width: calc((100% - 16px) / 3);
+  /* height: 170px; */
+  object-fit: cover;
+  /* border-radius: 8px; */
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  background-color: #f6f2ee;
+}
+
+/* ảnh giữa nhích lên (lên khoảng 12%) và nổi bật hơn */
+.three-photo .photo-middle {
+  transform: translateY(-12%);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  z-index: 2;
+}
+
+/* hiệu ứng hover */
+.three-photo .photo-item:hover {
+  transform: translateY(-6%) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
+.three-photo .photo-middle {
+  /* mặc định như khi hover: hơi nâng lên + phóng to nhẹ và bóng lớn hơn */
+  transform: translateY(-28%) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+  z-index: 2;
+}
+
+/* hiệu ứng hover cho các ảnh khác */
+.three-photo .photo-item:hover {
+  transform: translateY(-6%) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
+/* hover cho ảnh giữa: tăng mức nhích và scale hơn nữa */
+.three-photo .photo-middle:hover {
+  transform: translateY(-18%) scale(2);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* responsive: trên màn nhỏ giảm chiều cao và giảm độ nhích */
+@media (max-width: 420px) {
+  .three-photo {
+    gap: 6px;
+  }
+
+  .three-photo .photo-item {
+    /* height: 120px; */
+    flex-basis: calc((100% - 12px) / 3);
+    width: calc((100% - 12px) / 3);
+  }
+
+  .three-photo .photo-middle {
+    transform: translateY(-30%);
+  }
+}
+
+@keyframes headerRise {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.99);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes namePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(10px);
+  }
+
+  60% {
+    transform: scale(1.06) translateY(-6px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.header-fade {
+  opacity: 0;
+  animation: headerRise 560ms cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
+}
+
+.name-pop {
+  opacity: 0;
+  animation: namePop 820ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.song-float {
+  opacity: 0;
+  animation: floatUp 700ms ease-out forwards;
+}
+
+/* small extra delay utilities */
+.delay-300 {
+  animation-delay: 2300ms;
+}
+
+.delay-400 {
+  animation-delay: 2400ms;
+}
+
+.delay-500 {
+  animation-delay: 2500ms;
+}
+
+.delay-800 {
+  animation-delay: 2800ms;
+}
+
+.delay-3000 {
+  animation-delay: 3000ms;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.calendar-header {
+  grid-column: span 7;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 0.75rem;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  color: #374151;
+  border-radius: 8px;
+  position: relative;
+}
+
+.calendar-day.active {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.calendar-day.active::before {
+  content: "💖";
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  font-size: 12px;
+  animation: heartbeat 1s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.calendar-day.disabled {
+  color: #9ca3af;
+}
+
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 180px;
+  gap: 12px;
+  padding: 20px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+  transform-origin: center;
+  transition: all 0.3s ease-out;
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+  transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(var(--delay) * 80ms);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Hover Effects */
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
+}
+
+/* Grid Layout Variations */
+.gallery-item.wide {
+  grid-column: span 2;
+}
+
+.gallery-item.tall {
+  grid-row: span 2;
+}
+
+.gallery-item.big {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* Responsive adjustments */
+/* @media (max-width: 768px) { */
+.photo-gallery {
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 140px;
+  gap: 8px;
+  padding: 12px;
+}
+
+/* } */
+
+@media (max-width: 768px) {
+  /* Adjust main container */
+  main {
+    padding: 0.5rem;
+  }
+
+  /* Make images fit better on mobile */
+  .photo-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 120px;
+    gap: 6px;
+    padding: 10px;
+  }
+
+  /* Adjust font sizes for mobile */
+  .signature {
+    font-size: 2rem;
+    /* Smaller signature font */
+  }
+
+  .datetime-text {
+    font-size: 1.5rem;
+  }
+
+  /* Calendar adjustments */
+  .calendar {
+    max-width: 280px;
+  }
+
+  .calendar-day {
+    font-size: 0.75rem;
+  }
+
+  /* Form adjustments */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+    /* Prevent zoom on iOS */
+    padding: 0.75rem;
+  }
+
+  /* Three photo layout */
+  .three-photo .photo-item {
+    /* height: 150px; */
+  }
+
+  .three-photo .photo-middle {
+    transform: translateY(-30%) scale(1.03);
+  }
+
+  /* Location card */
+  .p-6 {
+    padding: 1rem;
+  }
+
+  /* Adjust spacing */
+  .mt-6 {
+    margin-top: 1rem;
+  }
+
+  .mb-6 {
+    margin-bottom: 1rem;
+  }
+
+  /* Header adjustments */
+  #invitation {
+    padding: 1rem;
+  }
+
+  /* Music button position */
+  .fixed.bottom-6 {
+    bottom: 1rem;
+  }
+}
+
+/* Additional adjustments for very small screens */
+@media (max-width: 360px) {
+  .signature {
+    font-size: 1.75rem;
+  }
+
+  .three-photo .photo-item {
+    height: 80px;
+  }
+
+  .calendar {
+    max-width: 240px;
+  }
+}
+
+/* Album và footer animations */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer-text {
+  position: relative;
+  display: inline-block;
+  font-style: italic;
+  color: #7b0f0f;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: 400ms;
+}
+
+.footer-text::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #b91c1c, transparent);
+  transform: scaleX(0);
+  transition: transform 0.6s ease;
+}
+
+.footer-text.show::after {
+  transform: scaleX(1);
+}
+
+.photo-gallery {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.photo-gallery.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-item {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: calc(var(--delay) * 100ms);
+}
+
+.photo-gallery.show .gallery-item {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Thêm vào phần style - curtain (đã format, đối xứng cho bên phải) */
+:root {
+  --curtain-accent: #ffd166;
+  /* vàng ấm */
+}
+
+@keyframes curtainRight {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(100% + 200px));
+  }
+}
+
+@keyframes curtainLeft {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-100% - 200px));
+  }
+}
+
+.curtain-wrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.curtain-left,
+.curtain-right {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  /* background: linear-gradient(180deg, #b91c1c 0%, #8a0f0f 100%); */
+  overflow: hidden;
+}
+
+.curtain-center {
+  position: absolute;
+  left: calc(50% - 100px);
+  top: calc(50% - 100px);
+  background: #b91c1c;
+  z-index: 1000;
+}
+
+.curtain-left {
+  overflow: unset;
+  z-index: 100;
+}
+
+.curtain-right {
+  z-index: 10;
+
+}
+
+/* .curtain-left-content {
+  position: absolute;
+  right: -100px;
+  top: calc(50% - 100px);
+  background: #b91c1c;
+} */
+.curtain-left-content {
+  position: absolute;
+  right: -190px;
+  top: calc(50% - 190px);
+}
+/* mở rèm chậm, mượt */
+.curtain-left {
+  animation: curtainLeft 5.4s cubic-bezier(0.22, 0.9, 0.36, 1) forwards 2s;
+}
+
+.curtain-right {
+  animation: curtainRight 5.4s cubic-bezier(0.22, 0.9, 0.36, 1) forwards 2s;
+}
+
+.curtain-left.mobile {
+  width: 100%;
+  /* background-color: #b91c1c; */
+}
+
+.curtain-left.mobile .curtain-left-content {
+  top: unset;
+  right: unset;
+  left: calc(50% - 50px);
+  bottom: 0;
+}
+
+.curtain-left.mobile .curtain-left-content img {
+  width: 100px;
+  height: 100px;
+}
+
+.curtain-left::before,
+.curtain-right::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.95;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  animation: curtainPatternTwinkle 5s linear infinite;
+}
+
+.curtain-left::before {
+  background-image: url("./images/233244.png");
+  background-size: cover;
+}
+
+.curtain-left.mobile::before {
+  background-image: url("./images/dev.jpg");
+}
+
+.curtain-right::before {
+  background-image: url("./images/233244.png");
+  background-size: cover;
+  transform: scaleX(-1);
+  /* đảo đối xứng hoạ tiết để cân đối */
+}
+
+/* thêm các chấm / trái tim nhẹ nhàng trên nền (pseudo after) */
+/* .curtain-left::after,
+        .curtain-right::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            opacity: 0.7;
+            background-image:
+                radial-gradient(circle at 8% 18%, rgba(255, 209, 102, 1) 0 6px, transparent 7px),
+                radial-gradient(circle at 22% 50%, rgba(255, 209, 102, 0.95) 0 5px, transparent 6px),
+                radial-gradient(circle at 68% 28%, rgba(255, 241, 199, 0.9) 0 7px, transparent 8px),
+                radial-gradient(circle at 86% 72%, rgba(255, 209, 102, 0.95) 0 4px, transparent 5px);
+            animation: curtainFloat 6s ease infinite;
+        } */
+
+/* pattern SVG nhúng (single-line) + pseudo cho họa tiết, right là mirror của left */
+
+@keyframes curtainPatternTwinkle {
+  /* 0% {
+                opacity: 0.9;
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateY(-3px) scale(1.002);
+            }
+
+            100% {
+                opacity: 0.9;
+                transform: translateY(0) scale(1);
+            } */
+}
+
+@keyframes curtainFloat {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* remove curtains cleanly after animation (JS will handle removal) */
+.curtain-hidden {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-out;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.thank-you-modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  transform: translateY(20px) scale(0.95);
+  transition: all 0.3s ease-out;
+  max-width: 90%;
+  width: 320px;
+  position: relative;
+  border: 4px solid #b91c1c;
+}
+
+.modal-overlay.show .thank-you-modal {
+  transform: translateY(0) scale(1);
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--color);
+  opacity: 0;
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(1000px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#tap-play-btn {
+  color: #ffffff;
+  /* background: linear-gradient(218deg, #ff0fec 0%, #ff8f8f 100%); */
+  background: linear-gradient(203deg, #ff3459 0%, #dd1414 100%);
+}
+
+/* đường kẻ đỏ gradient */
+.line-red {
+  height: 2px;
+  flex-grow: 1;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #fecdd3,
+    #fb7185,
+    #ff8383,
+    transparent
+  );
+  box-shadow: 0 0 8px rgba(251, 113, 133, 0.7);
+}
+
+/* trái tim đỏ lung linh */
+.heart-red-glow {
+  animation: heart-red-pulse 1.6s infinite ease-in-out;
+  text-shadow: 0 0 8px rgba(255, 120, 120, 0.8), 0 0 14px rgba(255, 80, 80, 0.6),
+    0 0 20px rgba(185, 28, 28, 0.6);
+}
+
+/* hiệu ứng nhịp tim */
+@keyframes heart-red-pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.18);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* === CHIBI DIVIDER === */
+.chibi-divider {
+  position: relative;
+  /* height: 220px; */
+  margin: 5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+.chibi-container {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+  z-index: 10;
+}
+
+/* === CHIBI IMAGE === */
+.chibi {
+  width: 140px;
+  height: 180px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 12px rgba(255, 107, 129, 0.2));
+  animation: bounce 2.5s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.chibi:hover {
+  transform: scale(1.1) !important;
+  filter: drop-shadow(0 10px 20px rgba(255, 107, 129, 0.3));
+}
+
+.chibi.bride {
+  animation-delay: 0s;
+}
+
+.chibi.groom {
+  animation-delay: 0.3s;
+}
+
+/* === TRÁI TIM GIỮA === */
+.heart-middle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.5rem;
+  animation: heartbeat 1.6s ease-in-out infinite;
+  z-index: 5;
+}
+
+/* === ĐƯỜNG CONG DƯỚI CHÂN === */
+.ground-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 40"><path d="M0,20 Q150,5 300,20 T600,20 Q450,35 300,20 T0,20" fill="none" stroke="%23ffd1dc" stroke-width="3" opacity="0.6"/></svg>')
+    no-repeat center bottom;
+  background-size: contain;
+  z-index: 1;
+}
+
+/* === HIỆU ỨNG === */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+@media (max-width: 640px) {
+  .chibi {
+    width: 100px;
+    height: 130px;
+  }
+
+  .chibi-container {
+    gap: 1rem;
+  }
+
+  .heart-middle {
+    font-size: 1.8rem;
+  }
+
+  .chibi-divider {
+    height: 100px;
+  }
+}
+
+.thank-wrap {
+  pointer-events: none;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.thank-you-panel {
+  width: min(92%, 360px);
+  background: linear-gradient(180deg, #fff 0%, #fff7f5 100%);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  text-align: center;
+  transform: translateY(20px) scale(0.98);
+  transition: transform 0.36s cubic-bezier(0.2, 0.9, 0.2, 1), opacity 0.32s;
+  border: 3px solid #f8d7da;
+  position: relative;
+  overflow: visible;
+}
+
+.modal-overlay.show .thank-you-panel {
+  transform: translateY(0) scale(1);
+}
+
+.thank-chibis {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.thank-chibi {
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  transform-origin: center bottom;
+  animation: chibiFloat 2.6s ease-in-out infinite;
+  filter: drop-shadow(0 8px 18px rgba(185, 28, 28, 0.18));
+}
+
+.thank-chibi.right {
+  animation-delay: 0.18s;
+  transform-origin: center bottom;
+}
+
+.thank-chibi.left {
+  animation-delay: 0s;
+  transform-origin: center bottom;
+}
+
+@keyframes chibiFloat {
+  0% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+}
+
+.thank-title {
+  font-family: "Ephesis", var(--font-heading);
+  color: #b91c1c;
+  font-size: 1.6rem;
+  margin: 6px 0 2px;
+  letter-spacing: 0.02em;
+}
+
+.thank-sub {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+/* heart burst */
+.heart-burst {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -20px;
+  font-size: 28px;
+  opacity: 0;
+  pointer-events: none;
+  animation: burstIn 0.6s ease-out forwards;
+  text-shadow: 0 6px 18px rgba(185, 28, 28, 0.25);
+}
+
+@keyframes burstIn {
+  0% {
+    transform: translateX(-50%) translateY(6px) scale(0.6);
+    opacity: 0;
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-8px) scale(1.06);
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(-12px) scale(1);
+    opacity: 1;
+  }
+}
+
+/* confetti (small colored rectangles) */
+.confetti-piece {
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  opacity: 0;
+  top: 20px;
+  border-radius: 2px;
+  transform-origin: center;
+  animation: confDrop linear forwards;
+}
+
+@keyframes confDrop {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(320px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.thank-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.thank-actions .btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: #b91c1c;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(185, 28, 28, 0.12);
+}
+
+.thank-actions .btn.ghost {
+  background: #fff;
+  color: #b91c1c;
+  border: 1px solid #f1c6c8;
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .thank-chibi,
+  .heart-burst,
+  .confetti-piece {
+    animation: none !important;
+  }
+}
