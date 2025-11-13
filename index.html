@@ -307,7 +307,8 @@
 
 
                     <div class="flex justify-center">
-                        <img src="./tools/images-vip/chibi-chu-re-ring.png" alt="Chibi welcome" class="chibi groom">
+                        <img src="./tools/images-vip/chibi-chu-re-ring.png" alt="Chibi welcome"
+                            class="chibi w-[124px]  groom">
                     </div>
                     <div class="flex flex-col gap-2">
                         <span class="text-3xl signature text-[#b91c1c] scale-up-trigger capiziotn">Xác Nhận Tham
@@ -553,11 +554,12 @@
                 `;
                 if (window.innerWidth >= 768) {
                     document.body.appendChild(overlay);
+
+                    const btn = document.getElementById('tap-play-btn');
+                    btn.focus(); // Tăng khả năng tương tác
                 }
                 // document.body.appendChild(overlay);
 
-                const btn = document.getElementById('tap-play-btn');
-                btn.focus(); // Tăng khả năng tương tác
 
                 const tryPlay = () => {
                     unlockAndPlayMusic();
