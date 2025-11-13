@@ -749,7 +749,7 @@ body {
 .curtain-left.mobile::before {
   /* background-image: url("./images/dev.jpg"); */
   background-size: contain;
-  background-image: url('/tools/images-vip/chibi-chu-re-ring.png');
+  background-image: url("/tools/images-vip/chibi-chu-re-ring.png");
   background-color: #fff9e6;
 }
 
@@ -1231,5 +1231,128 @@ body {
   .heart-burst,
   .confetti-piece {
     animation: none !important;
+  }
+}
+#music-btn {
+  width: 64px;
+  height: 64px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(185, 28, 28, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+#music-btn:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 209, 102, 0.08)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 40px rgba(185, 28, 28, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+#music-btn:active {
+  transform: scale(0.96);
+}
+
+/* vinyl / record SVG sizing inside button */
+#music-btn .music-icon {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  filter: drop-shadow(0 4px 12px rgba(185, 28, 28, 0.2));
+}
+
+/* rotating animation when playing */
+@keyframes record-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* apply animation to the svg group that should spin */
+#music-btn.playing .record-rotate {
+  animation: record-spin 1.8s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+/* subtle needle tilt when playing */
+#music-btn .needle {
+  transform-origin: 0px 1px;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: translate(22px, 4px) rotate(-15deg);
+}
+
+#music-btn.playing .needle {
+  transform: translate(22px, 4px) rotate(18deg);
+}
+
+/* pulse ring effect when playing */
+#music-btn .pulse-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 209, 102, 0.7);
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+#music-btn.playing .pulse-ring {
+  opacity: 1;
+  animation: pulse-ring 1.8s ease-out infinite;
+}
+
+/* color tweaks when playing */
+#music-btn.playing {
+  background: linear-gradient(
+    135deg,
+    rgba(185, 28, 28, 0.2),
+    rgba(255, 209, 102, 0.12)
+  );
+  border: 1px solid rgba(255, 209, 102, 0.4);
+  box-shadow: 0 12px 40px rgba(185, 28, 28, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 209, 102, 0.15);
+}
+
+#music-btn.playing:hover {
+  box-shadow: 0 16px 50px rgba(185, 28, 28, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 25px rgba(255, 209, 102, 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #music-btn,
+  #music-btn .record-rotate,
+  #music-btn .needle,
+  #music-btn .pulse-ring {
+    animation: none !important;
+    transition: none !important;
   }
 }
