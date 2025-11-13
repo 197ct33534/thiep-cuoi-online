@@ -166,11 +166,11 @@
                 <h3 class="text-sm uppercase text-gray-500 mb-2 tracking-wide">Trân Trọng Thông báo</h3>
                 <p class="text-xs text-gray-600 italic">Lễ Thành Hôn của</p>
                 <div class="flex flex-col gap-2">
-                    <span class="text-4xl signature text-gray-600 scale-up-trigger ">Ngụy Minh Tuấn</span>
-                    <span class="text-4xl signature text-gray-600 scale-up-trigger ">
+                    <span class="text-4xl signature text-[#8b0000] scale-up-trigger ">Ngụy Minh Tuấn</span>
+                    <span class="text-4xl signature text-[#8b0000] scale-up-trigger ">
                         &
                     </span>
-                    <span class="text-4xl signature text-gray-600 scale-up-trigger ">Nguyễn Hồng Căn</span>
+                    <span class="text-4xl signature text-[#8b0000] scale-up-trigger ">Nguyễn Hồng Căn</span>
                 </div>
             </div>
             <div class="flex justify-center mt-6">
@@ -195,12 +195,12 @@
                 <img src="tools/images-vip/wedding-4.jpg" alt="" class=" photo-item photo-middle ">
                 <img src="tools/images-vip/wedding-5.jpg" alt="" class=" photo-item ">
             </div>
-            <div class="px-5 py-6 text-center">
+            <div class="md:px-5 py-6 text-center">
                 <p class="text-sm text-gray-700 mb-2 fade-in-up-trigger">Kính mời quý vị tham dự tiệc mừng lễ thành hôn
                 </p>
                 <p class="text-sm text-gray-700 fade-in-up-trigger">Vào lúc</p>
 
-                <div class="my-3 flex justify-center items-center space-x-4 text-gray-800 font-medium">
+                <div class="my-3 flex justify-center items-center space-x-4  font-medium text-[#ff1414] ">
                     <div class="text-center scale-up-trigger">
                         <p class="text-sm">11 giờ 30</p>
                     </div>
@@ -219,15 +219,15 @@
                 <div class="chibi-divider my-10">
                     <div class="chibi-container">
 
-                        <img src="./tools/images-vip/chibi-codau.png" alt="Chibi Cô Dâu" class="chibi bride">
+                        <img src="./tools/images-vip/chibi-codau-chu-re-2.png" alt="Chibi Cô Dâu" class="chibi w-[124px]  bride">
 
-                        <div class="heart-middle">💕</div>
+                        <!-- <div class="heart-middle">💕</div> -->
 
-                        <img src="./tools/images-vip/chibi-chu-re.png" alt="Chibi Chú Rể" class="chibi groom">
+                        <!-- <img src="./tools/images-vip/chibi-chu-re-1.png" alt="Chibi Chú Rể" class="chibi groom"> -->
 
                     </div>
 
-                    <div class="ground-wave"></div>
+                    <div class="ground-wave-1"></div>
                 </div>
                 <p class="font-semibold text-gray-800 fade-in-up-trigger">TIỆC ĐƯỢC TỔ CHỨC TẠI</p>
 
@@ -246,7 +246,7 @@
                     </a>
                 </div>
 
-                <div class="xl:px-5 md:py-6 xl:pb-4 px-0 py-4 pb-3 text-center fade-in-up-trigger ">
+                <div class="xl:px-5 xl:pb-4 px-0 py-6 pb-3 text-center fade-in-up-trigger ">
                     <h4 class="text-2xl datetime-text  uppercase tracking-wide  text-[#b91c1c] mb-4">Tháng 11 - 2025
                     </h4>
                     <div class="calendar-header">
@@ -355,7 +355,7 @@
                     </div>
                 </div>
                 <div class="fade-in-up-trigger">
-                    <h3 class="text-3xl signature text-[#b91c1c] text-center mb-4">Album Hình Cưới</h3>
+                    <h3 class="text-3xl signature text-[#b91c1c] text-center">Album Hình Cưới</h3>
                     <div class="photo-gallery">
                         <!-- Big feature image -->
                         <div class="gallery-item tall" style="--delay: 1">
@@ -501,7 +501,10 @@
                         </button>
                     </div>
                 `;
-                document.body.appendChild(overlay);
+                if(window.innerWidth >= 768) {
+                      document.body.appendChild(overlay);
+                }
+                // document.body.appendChild(overlay);
 
                 const btn = document.getElementById('tap-play-btn');
                 btn.focus(); // Tăng khả năng tương tác

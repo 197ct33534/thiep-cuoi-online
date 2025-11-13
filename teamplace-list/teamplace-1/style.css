@@ -383,8 +383,8 @@ body {
 .calendar-day.active::before {
   content: "💖";
   position: absolute;
-  top: -2px;
-  right: -2px;
+  top: 0px;
+  right: -12px;
   font-size: 12px;
   animation: heartbeat 1s ease-in-out infinite;
 }
@@ -688,7 +688,6 @@ body {
 
 .curtain-right {
   z-index: 10;
-
 }
 
 /* .curtain-left-content {
@@ -748,7 +747,10 @@ body {
 }
 
 .curtain-left.mobile::before {
-  background-image: url("./images/dev.jpg");
+  /* background-image: url("./images/dev.jpg"); */
+  background-size: contain;
+  background-image: url('/tools/images-vip/chibi-chu-re-ring.png');
+  background-color: #fff9e6;
 }
 
 .curtain-right::before {
@@ -930,7 +932,7 @@ body {
 .chibi-divider {
   position: relative;
   /* height: 220px; */
-  margin: 5rem 0;
+  margin: 4rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -991,7 +993,17 @@ body {
   background-size: contain;
   z-index: 1;
 }
-
+.ground-wave-1 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 40"><path d="M0,25 Q75,0 250,25 T300,25 T450,25 T600,25" fill="none" stroke="pink" stroke-width="2" opacity="0.6"/><path d="M0,25 Q75,40 150,25 T300,25 T450,25 T600,25" fill="none" stroke="red" stroke-width="2" opacity="0.6"/></svg>')
+    no-repeat center bottom;
+  background-size: contain;
+  z-index: 1;
+}
 /* === HIỆU ỨNG === */
 @keyframes bounce {
   0%,
