@@ -6,17 +6,10 @@
   /* vàng ấm */
 }
 
-@font-face {
-  font-family: "ThSignatura";
-  src: url("/fonts/ThSignatura.woff2") format("woff2"),
-    url("/fonts/ThSignatura.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+
 
 .family-title {
-  font-family: "Protest Strike", system-ui;
+  font-family: var(--font-heading);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -26,7 +19,7 @@ body {
 }
 
 .signature {
-  font-family: "Ephesis", "ThSignatura", var(--font-heading);
+  font-family: "Ephesis", cursive;
   font-weight: 400;
   line-height: 1;
   display: inline-block;
@@ -42,9 +35,9 @@ body {
 }
 
 .datetime-text {
-  font-family: "Style Script", cursive;
+  font-family: "Ephesis", cursive;
   font-weight: 400;
-  line-height: 1.2;
+  /* line-height: 1.2; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -390,6 +383,7 @@ body {
 }
 
 @keyframes heartbeat {
+
   0%,
   100% {
     transform: scale(1);
@@ -478,6 +472,7 @@ body {
 /* } */
 
 @media (max-width: 768px) {
+
   /* Adjust main container */
   main {
     padding: 0.5rem;
@@ -701,6 +696,7 @@ body {
   right: -190px;
   top: calc(50% - 190px);
 }
+
 /* mở rèm chậm, mượt */
 .curtain-left {
   animation: curtainLeft 5.4s cubic-bezier(0.22, 0.9, 0.36, 1) forwards 2s;
@@ -895,14 +891,12 @@ body {
 .line-red {
   height: 2px;
   flex-grow: 1;
-  background: linear-gradient(
-    to right,
-    transparent,
-    #fecdd3,
-    #fb7185,
-    #ff8383,
-    transparent
-  );
+  background: linear-gradient(to right,
+      transparent,
+      #fecdd3,
+      #fb7185,
+      #ff8383,
+      transparent);
   box-shadow: 0 0 8px rgba(251, 113, 133, 0.7);
 }
 
@@ -988,24 +982,25 @@ body {
   left: 0;
   width: 100%;
   height: 40px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 40"><path d="M0,20 Q150,5 300,20 T600,20 Q450,35 300,20 T0,20" fill="none" stroke="%23ffd1dc" stroke-width="3" opacity="0.6"/></svg>')
-    no-repeat center bottom;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 40"><path d="M0,20 Q150,5 300,20 T600,20 Q450,35 300,20 T0,20" fill="none" stroke="%23ffd1dc" stroke-width="3" opacity="0.6"/></svg>') no-repeat center bottom;
   background-size: contain;
   z-index: 1;
 }
+
 .ground-wave-1 {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 40px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 40"><path d="M0,25 Q75,0 250,25 T300,25 T450,25 T600,25" fill="none" stroke="pink" stroke-width="2" opacity="0.6"/><path d="M0,25 Q75,40 150,25 T300,25 T450,25 T600,25" fill="none" stroke="red" stroke-width="2" opacity="0.6"/></svg>')
-    no-repeat center bottom;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 40"><path d="M0,25 Q75,0 250,25 T300,25 T450,25 T600,25" fill="none" stroke="pink" stroke-width="2" opacity="0.6"/><path d="M0,25 Q75,40 150,25 T300,25 T450,25 T600,25" fill="none" stroke="red" stroke-width="2" opacity="0.6"/></svg>') no-repeat center bottom;
   background-size: contain;
   z-index: 1;
 }
+
 /* === HIỆU ỨNG === */
 @keyframes bounce {
+
   0%,
   100% {
     transform: translateY(0);
@@ -1017,6 +1012,7 @@ body {
 }
 
 @keyframes heartbeat {
+
   0%,
   100% {
     transform: translate(-50%, -50%) scale(1);
@@ -1227,12 +1223,14 @@ body {
 
 /* reduced motion */
 @media (prefers-reduced-motion: reduce) {
+
   .thank-chibi,
   .heart-burst,
   .confetti-piece {
     animation: none !important;
   }
 }
+
 #music-btn {
   width: 64px;
   height: 64px;
@@ -1251,11 +1249,9 @@ body {
 }
 
 #music-btn:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.15),
-    rgba(255, 209, 102, 0.08)
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 209, 102, 0.08));
   border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 12px 40px rgba(185, 28, 28, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.4);
@@ -1279,6 +1275,7 @@ body {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -1289,9 +1286,11 @@ body {
     transform: scale(0.8);
     opacity: 0;
   }
+
   50% {
     opacity: 0.6;
   }
+
   100% {
     transform: scale(1.8);
     opacity: 0;
@@ -1332,11 +1331,9 @@ body {
 
 /* color tweaks when playing */
 #music-btn.playing {
-  background: linear-gradient(
-    135deg,
-    rgba(185, 28, 28, 0.2),
-    rgba(255, 209, 102, 0.12)
-  );
+  background: linear-gradient(135deg,
+      rgba(185, 28, 28, 0.2),
+      rgba(255, 209, 102, 0.12));
   border: 1px solid rgba(255, 209, 102, 0.4);
   box-shadow: 0 12px 40px rgba(185, 28, 28, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 209, 102, 0.15);
@@ -1348,6 +1345,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   #music-btn,
   #music-btn .record-rotate,
   #music-btn .needle,
